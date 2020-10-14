@@ -1,0 +1,38 @@
+* {
+    font-family: Cardo, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page__box {
+    margin: 15% 5%;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    gap: 1rem;
+}
+
+.box__quote-body {
+    font-size: 1.8em;
+    position: relative;
+}
+.box__author {
+    font-size: 1.4em;
+    font-style: italic;
+}
+.box__author::before {
+    content: "- ";
+    padding-left: 1.4em;
+}
