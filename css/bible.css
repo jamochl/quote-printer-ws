@@ -24,7 +24,7 @@
     flex-direction: column;
     justify-content: center;
     position: relative;
-    gap: 1.5rem;
+    gap: calc((1.25vw + 0.75vh) * 1.35);
 }
 /* The font size relies on a magic formula. Add view width and view height
  * with larger view width proportion, and multiply the sum until it matches
