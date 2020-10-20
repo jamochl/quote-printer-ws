@@ -1,9 +1,12 @@
+/* margin and padding must be 0 for .page width and height values to work */
 * {
     font-family: Cardo, sans-serif;
     margin: 0;
     padding: 0;
 }
 
+/* Page class describes every printable page, and creates a full width and
+ * height for each so that each quote will be printed on its own page*/
 .page {
     width: 100vw;
     height: 100vh;
@@ -11,9 +14,9 @@
     justify-content: center;
     align-items: center;
 }
-
+/* The margin of each page, change as desired*/
 .page__box {
-    margin: 15% 5%;
+    margin: 15% 10%;
 }
 
 .box {
@@ -21,18 +24,24 @@
     flex-direction: column;
     justify-content: center;
     position: relative;
-    gap: 1rem;
+    gap: 1.5rem;
 }
-
+/* The font size relies on a magic formula. Add view width and view height
+ * with larger view width proportion, and multiply the sum until it matches
+ * 2.0em body text and 1.7em author text on a landscape A4 page. It is done
+ * this way so that quotes in portrait mode will have a decreased text
+ * size, which tends to look better. */
 .box__quote-body {
-    font-size: 1.8em;
-    position: relative;
+    font-size: calc((1.25vw + 0.75vh) * 1.6);
+    /* font-size: 2.0em; */
 }
 .box__author {
-    font-size: 1.5em;
+    font-size: calc((1.25vw + 0.75vh) * 1.4);
+    /* font-size: 1.7em; */
     font-style: italic;
 }
+/* Adds the dash and spacing before the author text*/
 .box__author::before {
     content: "- ";
-    padding-left: 1.4em;
+    padding-left: 1.5em;
 }

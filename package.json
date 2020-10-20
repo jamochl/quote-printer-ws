@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "James C. H. Lim",
   "license": "ISC",
   "dependencies": {
     "handlebars": "^4.7.6"
