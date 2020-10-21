@@ -26,7 +26,7 @@
           quote.body = quote.body.replaceAll(/\n/g, '<br>')
           // Have it so each space is a coded space, allowing easy prose and
           // psalm indentation
-          quote.body = quote.body.replaceAll(/\s/g, '&nbsp;')
+          quote.body = quote.body.replaceAll(/\s{2}/g, '&ensp;')
         });
         document.getElementById('quote-section').innerHTML = template(quoteList);
       } catch (e) {
