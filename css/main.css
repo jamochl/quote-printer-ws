@@ -1,0 +1,144 @@
+@media screen {
+    /* margin and padding must be 0 for .page width and height values to work */
+    * {
+        font-family: Cardo, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* The margin of each page, change as desired*/
+    .body {
+        margin: 5rem 10%;
+    }
+
+    .info {
+        font-family: Roboto;
+        font-size: calc((0.75vw + 0.75vh) * 1.3);
+        /* font-size: 1.7em; */
+        font-style: italic;
+        margin-bottom: 2rem;
+    }
+
+    .textarea {
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 0.5em;
+        resize: none;
+    }
+
+    .text-input {
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 0.2em 0.8em;
+    }
+
+    .page {
+        margin-bottom: 2rem;
+    }
+
+    .button {
+        margin-top: 2rem;
+        margin-left: 0.4rem;
+        float: right;
+        padding: 0.4em;
+        background: none;
+        border: 2px solid black;
+        border-radius: 15px;
+        font-size: calc((0.75vw + 0.75vh) * 1.1);
+    }
+
+    .button:hover {
+        background: black;
+        color: white;
+        transition-duration: 0.4s;
+    }
+
+    .button:active {
+        background: grey;
+        color: white;
+        transition-duration: 0.0s;
+    }
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        gap: calc((0.75vw + 0.75vh) * 0.8);
+    }
+
+    .box__quote-body {
+        font-size: calc((0.75vw + 0.75vh) * 1.6);
+        /* font-size: 2.0em; */
+    }
+    .box__author {
+        font-size: calc((0.75vw + 0.75vh) * 1.4);
+        /* font-size: 1.7em; */
+        font-style: italic;
+    }
+    .no-screen {
+        display: none;
+    }
+}
+
+@media print {
+    /* margin and padding must be 0 for .page width and height values to work */
+    * {
+        font-family: Cardo, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Page class describes every printable page, and creates a full width and
+    * height for each so that each quote will be printed on its own page*/
+    .page {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    /* The margin of each page, change as desired*/
+    .page__box {
+        margin: 15% 10%;
+    }
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        gap: calc((1.25vw + 0.75vh) * 1.35);
+    }
+    /* The font size relies on a magic formula. Add view width and view height
+    * with larger view width proportion, and multiply the sum until it matches
+    * 2.0em body text and 1.7em author text on a landscape A4 page. It is done
+    * this way so that quotes in portrait mode will have a decreased text
+    * size, which tends to look better. */
+    .box__quote-body {
+        font-size: calc((1.25vw + 0.75vh) * 1.6);
+        /* font-size: 2.0em; */
+    }
+    .box__author {
+        font-size: calc((1.25vw + 0.75vh) * 1.4);
+        /* font-size: 1.7em; */
+        font-style: italic;
+    }
+    /* Adds the dash and spacing before the author text*/
+    .box__author::before {
+        content: "- ";
+        padding-left: 1.5em;
+    }
+
+    .textarea {
+        border: 0px solid black;
+        resize: none;
+    }
+
+    .text-input {
+        border: 0px solid black;
+    }
+    .no-print {
+        display: none;
+    }
+}

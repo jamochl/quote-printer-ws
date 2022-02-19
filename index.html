@@ -4,34 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/bible.css">
+    <link rel="stylesheet" href="css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
-<body class="">
-    <!-- quotes will be injected here from precompiled handlebars template -->
-    <div id="quote-section">Error parsing template</div>
-    <!-- Unfortunately, this requires internet connection -->
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.runtime.js"></script>
-    <script src="./quote.precompiled.js"></script>
-    <script src="./quoteList.js"></script>
-    <script>
-      // Get the quote block from the handlebars template
-      var template = Handlebars.templates.quote;
-      // try the template and quote parsing, if either is broken report error
-      // back to user
-      try {
-        // Parse each quote in quoteList.js and fix newlines and tab spacing as required
-        quoteList.quotes.forEach(quote => {
-          // Must replace \n before \s otherwise it will break the \n order
-          quote.body = quote.body.replaceAll(/\n/g, '<br>')
-          // Have it so each space is a coded space, allowing easy prose and
-          // psalm indentation
-          quote.body = quote.body.replaceAll(/\s{2}/g, '&ensp;')
-        });
-        document.getElementById('quote-section').innerHTML = template(quoteList);
-      } catch (e) {
-        document.getElementById('quote-section').innerHTML = e
-      }
-    </script>
+<body class="body">
+    <p class="info body__info no-print">TODO: Input quotes, and when finished, print to paper or PDF with Ctrl-P</p>
+    <div id="quote-section">
+    </div>
+    <button class="button body__button no-print" id="quote-add-button">Add Quote</button>
+    <button class="button body__button no-print" id="quote-remove-button">Remove Quote</button>
+    <script src="index.js"></script>
 </body>
 </html>
