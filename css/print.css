@@ -16,8 +16,9 @@
     * height for each so that each quote will be printed on its own page*/
     .page {
         width: 100vw;
-        height: 100vh;
+        height: 100%;
         display: flex;
+        position: fixed;
         justify-content: center;
         align-items: center;
     }

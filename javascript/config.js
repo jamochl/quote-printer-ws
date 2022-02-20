@@ -1,5 +1,5 @@
 export const config = {
-    multiQuotes: true,
+    multiQuotes: false,
     allowFontChoices: true,
     fontList: [
         "Cardo",
