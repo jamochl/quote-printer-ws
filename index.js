@@ -13,9 +13,9 @@ function createPage() {
     inputDOM.setAttribute("class", "box__author text-input no-print");
     inputDOM.setAttribute("placeholder", "author");
     const quoteBodyDOM = document.createElement("p");
-    quoteBodyDOM.setAttribute("class", "box__quote-body para");
+    quoteBodyDOM.setAttribute("class", "box__quote-body para no-screen");
     const authorDOM = document.createElement("p");
-    authorDOM.setAttribute("class", "box__author para");
+    authorDOM.setAttribute("class", "box__author para no-screen");
 
     const removeQuoteButtonDOM = document.createElement("button");
     removeQuoteButtonDOM.setAttribute("class", "button page__button no-print");
@@ -54,6 +54,10 @@ function addQuote() {
 function main() {
     const addQuoteButton = document.getElementById("quote-add-button")
     addQuoteButton.addEventListener("click", addQuote);
+    const printButton = document.getElementById("print-button")
+    printButton.addEventListener("click", () => {
+        window.print();
+    });
     addQuote();
 }
 

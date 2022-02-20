@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+    <link type="text/css" rel="stylesheet" href="css/print.css">
     <link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body class="body">
     <p class="info body__info no-print">Instructions: Input quotes, and when finished, print to paper or PDF with Ctrl-P</p>
     <div class="quote-section" id="quote-section">
     </div>
-    <button class="button body__button no-print" id="quote-add-button">Add Quote</button>
+    <div class="button-box body__button-box">
+        <button class="button button-box__button no-print" id="quote-add-button">Add Quote</button>
+        <button class="button button-box__button no-print" id="print-button">Print</button>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>
