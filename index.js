@@ -29,7 +29,9 @@ function createPage() {
     pageDOM.appendChild(removeQuoteButtonDOM);
 
     const updateBodyPara = () => {
-        quoteBodyDOM.textContent = textareaDOM.value;
+        quoteBodyDOM.innerHTML = textareaDOM.value
+                                        .replaceAll(/\n/g, '<br>')
+                                        .replaceAll(/\s{2}/g, '&ensp;');
     }
     textareaDOM.addEventListener("input", updateBodyPara)
 
