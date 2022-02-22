@@ -1,0 +1,27 @@
+{
+  "name": "quote_printer",
+  "version": "1.0.0",
+  "description": "A webapp to print nice quotes",
+  "main": "index.html",
+  "scripts": {
+    "test": "browser-sync . -w --index=index.html",
+    "watch": "browser-sync . -w --index=index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamochl/quote_printer.git"
+  },
+  "keywords": [
+    "quote",
+    "printer"
+  ],
+  "author": "James Chun Hwee Lim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamochl/quote_printer/issues"
+  },
+  "homepage": "https://github.com/jamochl/quote_printer#readme",
+  "devDependencies": {
+    "browser-sync": "^2.27.7"
+  }
+}
