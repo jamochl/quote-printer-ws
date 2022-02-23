@@ -1,4 +1,9 @@
-function createPage() {
+// import config from "/config.js";
+function getFontOption(name, fontSizeOptions) {
+    return fontSizeOptions.find((option) => option.name == name);
+}
+
+function createQuote(fontSizeOptions) {
     const pageDOM = document.createElement("div");
     pageDOM.setAttribute("class", "page quote-section__page");
 
@@ -13,25 +18,60 @@ function createPage() {
     inputDOM.setAttribute("class", "box__author text-input no-print");
     inputDOM.setAttribute("placeholder", "author");
     const quoteBodyDOM = document.createElement("p");
-    quoteBodyDOM.setAttribute("class", "box__quote-body para no-screen");
+    quoteBodyDOM.setAttribute("class", "box__quote-para para no-screen");
     const authorDOM = document.createElement("p");
-    authorDOM.setAttribute("class", "box__author para no-screen");
+    authorDOM.setAttribute("class", "box__author-para para no-screen");
+
+    const quoteOptionsDOM = document.createElement("div");
+    quoteOptionsDOM.setAttribute("class", "page__quote-options quote-options no-print");
 
     const removeQuoteButtonDOM = document.createElement("button");
-    removeQuoteButtonDOM.setAttribute("class", "button page__button no-print");
+    removeQuoteButtonDOM.setAttribute("class", "button quote-options__button no-print");
     removeQuoteButtonDOM.textContent = "Remove Quote"
+
+    const fontSizeSelectDOM = document.createElement("select");
+    fontSizeSelectDOM.setAttribute("name", "fontsize");
+    fontSizeSelectDOM.setAttribute("class", "quote-options__fontsize select no-print");
+
+    // Loading font options
+    const fontOption = getFontOption("Default", fontSizeOptions)
+    quoteBodyDOM.style.fontSize = fontOption.quoteBodySize;
+    authorDOM.style.fontSize = fontOption.authorSize;
+
+    fontSizeSelectDOM.addEventListener("change", (event) => {
+        const fontOption = getFontOption(event.target.value, fontSizeOptions)
+        console.log("Setting quote to fontOption", fontOption);
+        quoteBodyDOM.style.fontSize = fontOption.quoteBodySize;
+        authorDOM.style.fontSize = fontOption.authorSize;
+    })
+
+    // font-size options
+    const fontSizes = fontSizeOptions.map((option) => option.name);
+    fontSizeOptionsDOM = fontSizes.map((fontString) => {
+        const option = document.createElement("option");
+        option.value = fontString;
+        option.textContent = fontString;
+        option.setAttribute("class", "select__options options no-print");
+        return option;
+    });
+
+    fontSizeOptionsDOM.forEach((option) => {
+        fontSizeSelectDOM.appendChild(option);
+    });
 
     pageDOM.appendChild(boxDOM);
     boxDOM.appendChild(textareaDOM);
     boxDOM.appendChild(inputDOM);
     boxDOM.appendChild(quoteBodyDOM);
     boxDOM.appendChild(authorDOM);
-    pageDOM.appendChild(removeQuoteButtonDOM);
+    quoteOptionsDOM.appendChild(fontSizeSelectDOM);
+    quoteOptionsDOM.appendChild(removeQuoteButtonDOM);
+    pageDOM.appendChild(quoteOptionsDOM);
 
     const updateBodyPara = () => {
         quoteBodyDOM.innerHTML = textareaDOM.value
-                                        .replaceAll(/\n/g, '<br>')
-                                        .replaceAll(/\s{2}/g, '&ensp;');
+                                    .replaceAll(/\n/g, '<br>')
+                                    .replaceAll(/\s{2}/g, '&ensp;');
     }
     textareaDOM.addEventListener("input", updateBodyPara)
 
@@ -48,19 +88,55 @@ function createPage() {
     return pageDOM;
 }
 
-function addQuote() {
-    const quoteSectionDOM = document.getElementById("quote-section");
-    quoteSectionDOM.appendChild(createPage());
+const quoteButtonId = "quote-add-button";
+
+function createQuoteButton() {
+    const quoteButtonDOM = document.createElement("button");
+    quoteButtonDOM.setAttribute("class", "button button-box__button no-print");
+    quoteButtonDOM.id = quoteButtonId;
+    quoteButtonDOM.textContent = "Add Quote"
+    return quoteButtonDOM;
+}
+
+const fontSelectId = "font-choice-select";
+
+function createFontSelect(fontList) {
+    const fontSelectDOM = document.createElement("select");
+    fontSelectDOM.setAttribute("class", "button button-box__button no-print");
+    fontSelectDOM.id = fontSelectId;
+    fontSelectDOM.textContent = "Add Quote"
+    return fontSelectDOM;
 }
 
 function main() {
-    const addQuoteButton = document.getElementById("quote-add-button")
-    addQuoteButton.addEventListener("click", addQuote);
+    const quoteSectionDOM = document.getElementById("quote-section");
+    quoteSectionDOM.appendChild(createQuote(config.fontSizeOptions));
+
+    if (config.allowFontChoices == true) {
+        const buttonBoxDOM = document.getElementById("button-box");
+        buttonBoxDOM.insertBefore(createFontButton(), buttonBoxDOM.children[0]);
+
+        const addFontButton = document.getElementById(fontButtonId);
+
+        addFontButton.addEventListener("click", () => {
+            quoteSectionDOM.appendChild(createQuote(config.fontSizeOptions));
+        });
+    }
+
+    if (config.multiQuotes == true) {
+        const buttonBoxDOM = document.getElementById("button-box");
+        buttonBoxDOM.insertBefore(createQuoteButton(), buttonBoxDOM.children[0]);
+
+        const addQuoteButton = document.getElementById(quoteButtonId);
+
+        addQuoteButton.addEventListener("click", () => {
+            quoteSectionDOM.appendChild(createQuote(config.fontSizeOptions));
+        });
+    }
     const printButton = document.getElementById("print-button")
     printButton.addEventListener("click", () => {
         window.print();
     });
-    addQuote();
 }
 
 main();
