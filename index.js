@@ -3,7 +3,7 @@ function getFontOption(name, fontSizeOptions) {
     return fontSizeOptions.find((option) => option.name == name);
 }
 
-function createQuote(fontSizeOptions) {
+function createQuote(config) {
     const pageDOM = document.createElement("div");
     pageDOM.setAttribute("class", "page quote-section__page");
 
@@ -25,15 +25,12 @@ function createQuote(fontSizeOptions) {
     const quoteOptionsDOM = document.createElement("div");
     quoteOptionsDOM.setAttribute("class", "page__quote-options quote-options no-print");
 
-    const removeQuoteButtonDOM = document.createElement("button");
-    removeQuoteButtonDOM.setAttribute("class", "button quote-options__button no-print");
-    removeQuoteButtonDOM.textContent = "Remove Quote"
-
     const fontSizeSelectDOM = document.createElement("select");
     fontSizeSelectDOM.setAttribute("name", "fontsize");
     fontSizeSelectDOM.setAttribute("class", "quote-options__fontsize select no-print");
 
     // Loading font options
+    const fontSizeOptions = config.fontSizeOptions;
     const fontOption = getFontOption("Default", fontSizeOptions)
     quoteBodyDOM.style.fontSize = fontOption.quoteBodySize;
     authorDOM.style.fontSize = fontOption.authorSize;
@@ -65,7 +62,18 @@ function createQuote(fontSizeOptions) {
     boxDOM.appendChild(quoteBodyDOM);
     boxDOM.appendChild(authorDOM);
     quoteOptionsDOM.appendChild(fontSizeSelectDOM);
-    quoteOptionsDOM.appendChild(removeQuoteButtonDOM);
+
+    if (config.multiQuotes == true) {
+        const removeQuoteButtonDOM = document.createElement("button");
+        removeQuoteButtonDOM.setAttribute("class", "button page__button no-print");
+        removeQuoteButtonDOM.textContent = "Remove Quote"
+
+        quoteOptionsDOM.appendChild(removeQuoteButtonDOM);
+        removeQuoteButtonDOM.addEventListener("click", () => {
+            pageDOM.remove();
+        });
+    }
+
     pageDOM.appendChild(quoteOptionsDOM);
 
     const updateBodyPara = () => {
@@ -79,11 +87,6 @@ function createQuote(fontSizeOptions) {
         authorDOM.textContent = inputDOM.value;
     }
     inputDOM.addEventListener("input", updateAuthorPara)
-
-    const removeQuote = () => {
-        pageDOM.remove();
-    }
-    removeQuoteButtonDOM.addEventListener("click", removeQuote);
 
     return pageDOM;
 }
@@ -124,7 +127,7 @@ function createFontSelect(fontList) {
 
 function main() {
     const quoteSectionDOM = document.getElementById("quote-section");
-    quoteSectionDOM.appendChild(createQuote(config.fontSizeOptions));
+    quoteSectionDOM.appendChild(createQuote(config));
 
     if (config.allowFontChoices == true) {
         const buttonBoxDOM = document.getElementById("button-box");
