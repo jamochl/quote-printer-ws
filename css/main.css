@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital@0;1&family=Contrail+One&family=Playfair+Display:ital@0;1&family=Raleway:ital@0;1&family=Redressed&family=Roboto+Serif:ital@0;1&family=Shizuru&display=swap');
+
 @media screen {
     /* margin and padding must be 0 for .page width and height values to work */
     * {
@@ -63,6 +65,7 @@
         border: 2px solid black;
         border-radius: 15px;
         font-size: 1.1em;
+        text-align: center;
     }
 
     .select {

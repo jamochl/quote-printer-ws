@@ -37,7 +37,7 @@
         font-style: italic;
     }
     /* Adds the dash and spacing before the author text*/
-    .box__author::before {
+    .box__author-para::before {
         content: "- ";
         padding-left: 1.5em;
     }

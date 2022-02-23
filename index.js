@@ -45,7 +45,7 @@ function createQuote(fontSizeOptions) {
         authorDOM.style.fontSize = fontOption.authorSize;
     })
 
-    // font-size options
+    // Creating Select options
     const fontSizes = fontSizeOptions.map((option) => option.name);
     fontSizeOptionsDOM = fontSizes.map((fontString) => {
         const option = document.createElement("option");
@@ -105,6 +105,20 @@ function createFontSelect(fontList) {
     fontSelectDOM.setAttribute("class", "button button-box__button no-print");
     fontSelectDOM.id = fontSelectId;
     fontSelectDOM.textContent = "Add Quote"
+
+    // Creating Select options
+    fontSizeOptionsDOM = fontList.map((fontString) => {
+        const option = document.createElement("option");
+        option.value = fontString;
+        option.textContent = fontString;
+        option.style.fontFamily = fontString;
+        option.setAttribute("class", "select__options options no-print");
+        return option;
+    });
+
+    fontSizeOptionsDOM.forEach((optionDOM) => {
+        fontSelectDOM.appendChild(optionDOM);
+    })
     return fontSelectDOM;
 }
 
@@ -114,13 +128,19 @@ function main() {
 
     if (config.allowFontChoices == true) {
         const buttonBoxDOM = document.getElementById("button-box");
-        buttonBoxDOM.insertBefore(createFontButton(), buttonBoxDOM.children[0]);
+        const fontButtonDOM = createFontSelect(config.fontList)
+        buttonBoxDOM.insertBefore(fontButtonDOM, buttonBoxDOM.children[0]);
 
-        const addFontButton = document.getElementById(fontButtonId);
-
-        addFontButton.addEventListener("click", () => {
-            quoteSectionDOM.appendChild(createQuote(config.fontSizeOptions));
+        fontButtonDOM.addEventListener("change", (event) => {
+            const pageDOMs = document.getElementsByClassName("box page__box");
+            console.log(event);
+            for (pageDOM of pageDOMs) {
+                for (childDOM of pageDOM.children) {
+                    childDOM.style.fontFamily = event.target.value;
+                }
+            }
         });
+
     }
 
     if (config.multiQuotes == true) {

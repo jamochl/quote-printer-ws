@@ -1,18 +1,15 @@
 // export const config = {
 const config = {
     multiQuotes: true,
-    fontOptions: [
+    allowFontChoices: true,
+    fontList: [
         "Cardo",
-        "Helvetica",
-        "Verdana",
-        "Helvetica",
-        "Tahoma",
-        "Trebuchet MS",
-        "Times New Roman",
-        "Georgia",
-        "Garamond",
-        "Courier New",
-        "Brush Script MT"
+        "Contrail One",
+        "Playfair Display",
+        "Raleway",
+        "Redressed",
+        "Roboto Serif",
+        "Shizuru"
     ],
     fontSizeOptions: [
         {
