@@ -140,9 +140,10 @@ function main() {
         fontButtonDOM.addEventListener("change", (event) => {
             const pageDOMs = document.getElementsByClassName("box page__box");
             console.log(event);
-            for (pageDOM of pageDOMs) {
-                for (childDOM of pageDOM.children) {
+            for (const pageDOM of pageDOMs) {
+                for (const childDOM of pageDOM.children) {
                     childDOM.style.fontFamily = event.target.value;
+                    fontButtonDOM.style.fontFamily = event.target.value;
                 }
             }
         });
