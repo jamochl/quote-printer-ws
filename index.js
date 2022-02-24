@@ -31,7 +31,7 @@ function createQuote(config) {
 
     // Loading font options
     const fontSizeOptions = config.fontSizeOptions;
-    const fontOption = getFontOption("Default", fontSizeOptions)
+    const fontOption = getFontOption("Default", fontSizeOptions);
     quoteBodyDOM.style.fontSize = fontOption.quoteBodySize;
     authorDOM.style.fontSize = fontOption.authorSize;
 
@@ -153,7 +153,7 @@ function main() {
         const addQuoteButton = document.getElementById(quoteButtonId);
 
         addQuoteButton.addEventListener("click", () => {
-            quoteSectionDOM.appendChild(createQuote(config.fontSizeOptions));
+            quoteSectionDOM.appendChild(createQuote(config));
         });
     }
     const printButton = document.getElementById("print-button")
