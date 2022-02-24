@@ -1,6 +1,6 @@
 "use strict";
 
-import {config} from "/config.js";
+import {config} from "./config.js";
 
 function getFontOption(name, fontSizeOptions) {
     return fontSizeOptions.find((option) => option.name == name);
