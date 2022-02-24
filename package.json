@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "test": "browser-sync . -w --index=index.html",
-    "watch": "browser-sync . -w --index=index.html"
+    "watch": "browser-sync . -w --index=index.html",
+    "compile": "gulp"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,23 @@
   },
   "homepage": "https://github.com/jamochl/quote_printer#readme",
   "devDependencies": {
-    "browser-sync": "^2.27.7"
-  }
+    "autoprefixer": "^10.4.2",
+    "browser-sync": "^2.27.7",
+    "cssnano": "^5.0.17",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^9.0.1",
+    "gulp-uglify": "^3.0.2",
+    "postcss": "^8.4.6",
+    "uglify": "^0.1.5"
+  },
+  "browserslist": [
+    "defaults",
+    "last 2 safari version",
+    "last 2 chrome version",
+    "last 2 firefox version",
+    "last 2 iOS version",
+    "last 2 ChromeAndroid version",
+    "not IE 11",
+    "maintained node versions"
+  ]
 }
