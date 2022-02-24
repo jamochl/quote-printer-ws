@@ -4,9 +4,9 @@
   "description": "A webapp to print nice quotes",
   "main": "index.html",
   "scripts": {
-    "test": "browser-sync . -w --index=index.html",
-    "watch": "browser-sync . -w --index=index.html",
-    "compile": "gulp"
+    "gulp": "gulp",
+    "watch": "gulp",
+    "compile": "gulp parseCSS parseJS parseHTML"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "autoprefixer": "^10.4.2",
     "browser-sync": "^2.27.7",
     "cssnano": "^5.0.17",
+    "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-postcss": "^9.0.1",
     "gulp-uglify": "^3.0.2",
