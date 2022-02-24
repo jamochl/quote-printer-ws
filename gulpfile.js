@@ -2,36 +2,44 @@ const gulp = require("gulp");
 const postcss = require("gulp-postcss");
 const uglify = require("gulp-uglify");
 const browserSync = require("browser-sync").create();
+const concat = require("gulp-concat");
 const del = require("del");
 
-exports.clean = async () => {
+const clean = async () => {
     return del(['public']);
 }
 
-exports.parseCSS = async () => {
+exports.clean = clean;
+
+const compileCSS = async () => {
     return gulp.src("css/*.css")
     .pipe(postcss())
+    .pipe(concat("main.css"))
     .pipe(gulp.dest('./public/css'));
 }
+exports.compileCSS = compileCSS;
 
-exports.parseJS = async () => {
+const compileJS = async () => {
     return gulp.src("javascript/*.js")
     .pipe(uglify())
     .pipe(gulp.dest('./public'));
 }
+exports.compileJS = compileJS;
 
-exports.parseHTML = async () => {
+const compileHTML = async () => {
     return gulp.src("html/*.html")
     .pipe(gulp.dest('./public'))
 }
+exports.compileHTML = compileHTML;
 
-exports.parseAll = gulp.parallel(
-            exports.parseCSS,
-            exports.parseHTML,
-            exports.parseJS
+const compileAll = gulp.parallel(
+            compileCSS,
+            compileHTML,
+            compileJS
         );
+exports.compileAll = compileAll;
 
-exports.watch = async () => {
+const watch = async () => {
     browserSync.init({
         server: {
             baseDir: "./public",
@@ -41,12 +49,11 @@ exports.watch = async () => {
     const reloadBrowser = async () => {
         browserSync.reload();
     }
-    // Reload browser once to get all new files in public
-    reloadBrowser();
-
-    gulp.watch("css/*.css", gulp.series(exports.parseCSS, reloadBrowser));
-    gulp.watch("javascript/*.js", gulp.series(exports.parseJS, reloadBrowser));
-    gulp.watch("html/*.html", gulp.series(exports.parseHTML, reloadBrowser));
+    gulp.watch("css/*.css", gulp.series(compileCSS, reloadBrowser));
+    gulp.watch("javascript/*.js", gulp.series(compileJS, reloadBrowser));
+    gulp.watch("html/*.html", gulp.series(compileHTML, reloadBrowser));
 }
 
-exports.default = gulp.series(exports.clean, exports.parseAll, exports.watch)
+exports.watch = watch;
+
+exports.default = gulp.series(clean, compileAll, watch)

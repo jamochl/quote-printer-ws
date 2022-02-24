@@ -1,5 +1,4 @@
-// export const config = {
-const config = {
+export const config = {
     multiQuotes: true,
     allowFontChoices: true,
     fontList: [

@@ -6,7 +6,7 @@
   "scripts": {
     "gulp": "gulp",
     "watch": "gulp",
-    "compile": "gulp parseCSS parseJS parseHTML"
+    "compile": "gulp compileAll"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "cssnano": "^5.0.17",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
     "gulp-postcss": "^9.0.1",
     "gulp-uglify": "^3.0.2",
     "postcss": "^8.4.6",

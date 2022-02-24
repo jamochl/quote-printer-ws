@@ -1,4 +1,7 @@
-// import config from "/config.js";
+"use strict";
+
+import {config} from "/config.js";
+
 function getFontOption(name, fontSizeOptions) {
     return fontSizeOptions.find((option) => option.name == name);
 }
@@ -44,7 +47,7 @@ function createQuote(config) {
 
     // Creating Select options
     const fontSizes = fontSizeOptions.map((option) => option.name);
-    fontSizeOptionsDOM = fontSizes.map((fontString) => {
+    const fontSizeOptionsDOM = fontSizes.map((fontString) => {
         const option = document.createElement("option");
         option.value = fontString;
         option.textContent = fontString;
@@ -110,7 +113,7 @@ function createFontSelect(fontList) {
     fontSelectDOM.textContent = "Add Quote"
 
     // Creating Select options
-    fontSizeOptionsDOM = fontList.map((fontString) => {
+    const fontSizeOptionsDOM = fontList.map((fontString) => {
         const option = document.createElement("option");
         option.value = fontString;
         option.textContent = fontString;
